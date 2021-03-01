@@ -7,8 +7,9 @@ import {
   ContainerLoader
 } from '../styles/home'
 import Search from '../components/search'
+import Address from '../components/address'
 
-interface Address {
+interface IAddress {
   erro: boolean
   cep: number
   logradouro: string
@@ -26,7 +27,7 @@ const Home: React.FC = () => {
   const [loading, setLoading] = useState<Boolean>(false)
   const [error, setError] = useState<Boolean>(false)
   const [showSearch, setShowSearch] = useState<Boolean>(false)
-  const [address, setAddress] = useState<Address>()
+  const [address, setAddress] = useState<IAddress>()
   const [cep, setCep] = useState<string>()
 
   const alterLoading = () => {
@@ -37,7 +38,8 @@ const Home: React.FC = () => {
 
   const getAddress = () => {
     setLoading(true)
-    axios.get<Address>(`http://localhost:4000/address/${cep?.replace(/\D/g, "")}`)
+    setAddress(undefined)
+    axios.get<IAddress>(`http://localhost:4000/address/${cep?.replace(/\D/g, "")}`)
       .then((response) => {
         if (response?.data?.erro) {
           setError(true)
@@ -50,11 +52,13 @@ const Home: React.FC = () => {
       })
       .catch(() => {
         setError(true)
+        setLoading(false)
       })
   }
 
   const clear = () => {
     setCep('')
+    setError(false)
   }
 
   return (
@@ -81,6 +85,11 @@ const Home: React.FC = () => {
               showSearch={showSearch}
               setShowSearch={setShowSearch}
             />
+            {address && !showSearch ?
+              <Address
+                address={address}
+              />
+              : null}
           </>
         }
       </Card>

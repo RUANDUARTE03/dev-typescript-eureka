@@ -28,7 +28,13 @@ const FormSearch: React.FC<IFormSearchProps> = ({
         fullWidth
         label="Digite o CEP"
         error={error ? true : false}
-        helperText={error ? `Ocorreu um erro ao pesquisar pelo cep ${value}` : ""}
+        helperText={
+          error && String(value)?.length > 0 ?
+            `Ocorreu um erro ao pesquisar pelo cep ${value}.`
+            : error && String(value)?.length === 0 ?
+              "O CEP não pode ser vazio."
+              : ""
+        }
         value={value}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           setCep(e.target.value
