@@ -20,4 +20,7 @@ export default createGlobalStyle`
   button {
     cursor: pointer;
   }
+  .container-card {
+    padding: 20px
+  }
 `
