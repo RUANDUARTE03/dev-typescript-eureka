@@ -10,10 +10,10 @@ interface IInformationProps {
   title: string
 }
 
-const Information: React.FC<IInformationProps> = ({
+export default function Information({
   title,
-  information,
-}) => {
+  information
+}: IInformationProps) {
   return (
     <>
       {information ?
@@ -26,5 +26,3 @@ const Information: React.FC<IInformationProps> = ({
     </>
   )
 }
-
-export default Information

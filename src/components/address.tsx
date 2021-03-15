@@ -1,29 +1,16 @@
 import React from 'react'
 import Information from '../components/_information'
+import IAddress from '../models/address'
 import {
   Container
 } from '../styles/address'
-
-interface IAddress {
-  cep: number
-  logradouro: string
-  complemento: string
-  bairro: string
-  localidade: string
-  uf: string
-  ibge: number
-  gia: number
-  ddd: number
-  siafi: number
-}
-
 interface IAddressProps {
   address: IAddress | undefined
 }
 
-const Address: React.FC<IAddressProps> = ({
+export default function Address({
   address
-}) => {
+}: IAddressProps) {
   return (
     <Container>
       <Information
@@ -63,11 +50,9 @@ const Address: React.FC<IAddressProps> = ({
         information={address?.ddd}
       />
       <Information
-      title="SIAFI"
-      information={address?.siafi}
-    />
+        title="SIAFI"
+        information={address?.siafi}
+      />
     </Container>
   )
 }
-
-export default Address

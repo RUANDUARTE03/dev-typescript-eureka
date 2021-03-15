@@ -1,46 +1,42 @@
-# Getting Started with Create React App
+# Rodando o projeto dev-typescript-eureka
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Passos necessários para executar o projeto
 
-## Available Scripts
+* React > 16
 
-In the project directory, you can run:
+## Clonando o projeto
 
-### `yarn start`
+`git clone https://github.com/RUANDUARTE03/dev-typescript-eureka.git`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Instalando as dependências
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Acesse o diretório do projeto pelo terminal ou prompt de comando
+<br>
 
-### `yarn test`
+Via linha de comando instale os pacotes com
+`npm install --save` ou `yarn install`
+<br>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Após instalados os pacotes, execultar o projeto com `npm start` ou `yarn start`
 
-### `yarn build`
+## Agora o projeto será execultado em https://localhost:3000
+<br>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Pastas do Projeto
+- scr/components - Onde está localizado componentes das telas facilitando as leituras dos códigos.
+- src/containers - Onde está localizado a estrutura global das telas.
+-src/styles - Onde é localizado toda a estilização do projeto.
+-src/routes - Onde é localizado as rotas do projeto.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Sobre o projeto
+- Estilização feita com styled-components e material-ui
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<br>
 
-### `yarn eject`
+## Executando os testes
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Via linha de comando, `npm test` ou `yarn test` vai executar os testes e exibira o coverage (cobertura dos testes)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Necessário ter o back-end rodando localmente para funcionamento da aplicação.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+O back-end é https://github.com/RUANDUARTE03/dev-express-eureka.git e tem um README.md para ser executado.

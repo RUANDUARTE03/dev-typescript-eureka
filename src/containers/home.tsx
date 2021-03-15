@@ -8,22 +8,9 @@ import {
 } from '../styles/home'
 import Search from '../components/search'
 import Address from '../components/address'
+import IAddress from '../models/address';
 
-interface IAddress {
-  erro: boolean
-  cep: number
-  logradouro: string
-  complemento: string
-  bairro: string
-  localidade: string
-  uf: string
-  ibge: number
-  gia: number
-  ddd: number
-  siafi: number
-}
-
-const Home: React.FC = () => {
+export default function Home() {
   const [loading, setLoading] = useState<Boolean>(false)
   const [error, setError] = useState<Boolean>(false)
   const [showSearch, setShowSearch] = useState<Boolean>(false)
@@ -74,7 +61,7 @@ const Home: React.FC = () => {
             />
           </ContainerLoader>
           :
-          <>
+          <div data-testid="container-app">
             <Search
               error={error}
               setError={setError}
@@ -90,11 +77,9 @@ const Home: React.FC = () => {
                 address={address}
               />
               : null}
-          </>
+          </div>
         }
       </Card>
     </Container>
   )
 }
-
-export default Home

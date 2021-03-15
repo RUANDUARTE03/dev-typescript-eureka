@@ -5,6 +5,7 @@ import {
   ContainerActions
 } from '../styles/components/_formSearch'
 
+let regexCEP = /(\d{2}).(\d{3})-(\d{3})/
 interface IFormSearchProps {
   setCep: React.Dispatch<React.SetStateAction<string | undefined>>
   error: Boolean
@@ -14,17 +15,29 @@ interface IFormSearchProps {
   setError: React.Dispatch<React.SetStateAction<Boolean>>
 }
 
-const FormSearch: React.FC<IFormSearchProps> = ({
+export default function FormSearch({
   setCep,
   error,
   value,
   clear,
   getAddress,
   setError
-}) => {
+}: IFormSearchProps) {
+  
+  const handleCep = (e: any) => {
+    const currentValue = e?.target?.value
+    setCep(currentValue
+      .replace(/\D/g, "")
+      .replace(/(\d{2})(\d{3})(\d{2})/, "$1.$2-$3")
+      .replace(/(-\d{3})\d+?$/, "$1")
+    )
+    setError(false)
+  }
+
   return (
     <>
       <TextField
+        data-testid='input-add-cep'
         fullWidth
         label="Digite o CEP"
         error={error ? true : false}
@@ -36,28 +49,25 @@ const FormSearch: React.FC<IFormSearchProps> = ({
               : ""
         }
         value={value}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          setCep(e.target.value
-            .replace(/\D/g, "")
-            .replace(/(\d{2})(\d{3})(\d{2})/, "$1.$2-$3")
-            .replace(/(-\d{3})\d+?$/, "$1")
-          );
-          setError(false)
-        }}
+        onChange={(e: any) => { handleCep(e) }}
       />
       <ContainerActions>
         <Button
+          data-testid="btn-clear"
           variant="contained"
           color="secondary"
           onClick={clear}
+          disabled={value?.length === 0 || value?.length === undefined}
         >
           Limpar
         </Button>
         <Button
+          data-testid="btn-search"
           style={{ marginLeft: 20 }}
           variant="contained"
           color="primary"
           onClick={getAddress}
+          disabled={!regexCEP.test(String(value))}
         >
           Pesquisar
         </Button>
@@ -65,5 +75,3 @@ const FormSearch: React.FC<IFormSearchProps> = ({
     </>
   )
 }
-
-export default FormSearch

@@ -16,7 +16,7 @@ interface ISearchProps {
   setError: React.Dispatch<React.SetStateAction<Boolean>>
 }
 
-const Search: React.FC<ISearchProps> = ({
+export default function Search({
   setCep,
   error,
   value,
@@ -25,22 +25,24 @@ const Search: React.FC<ISearchProps> = ({
   showSearch,
   setShowSearch,
   setError
-}) => {
-
+}: ISearchProps) {
   return (
     <>
       {showSearch ?
-        <FormSearch
-          error={error}
-          setError={setError}
-          value={value}
-          clear={clear}
-          setCep={setCep}
-          getAddress={getAddress}
-        />
+        <div data-testid="container-form">
+          <FormSearch
+            error={error}
+            setError={setError}
+            value={value}
+            clear={clear}
+            setCep={setCep}
+            getAddress={getAddress}
+          />
+        </div>
         :
         <ContainerSearch>
           <Button
+            data-testid="btn-search-cep"
             style={{ marginLeft: 20 }}
             variant="contained"
             color="primary"
@@ -53,5 +55,3 @@ const Search: React.FC<ISearchProps> = ({
     </>
   )
 }
-
-export default Search
